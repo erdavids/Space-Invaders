@@ -56,7 +56,7 @@ def main(size, invaders, imgSize):
 
             create_invader((topLeftX, topLeftY, botRightX, botRightY), draw, size)
 
-    origImage.save("test.jpg")
+    origImage.save("Examples/Example-"+str(size)+"x"+str(size)+"-"+str(invaders)+"-"+str(imgSize)+".jpg")
 
 if __name__ == "__main__":
     main(int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3]))
