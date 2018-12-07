@@ -14,10 +14,10 @@ seed = random.randrange(sys.maxsize)
 rng = random.Random(seed)
 print("Seed was:", seed)
 
-APP_KEY = '44l77lU3T7nF9143VzV7AmLYR'
-APP_SECRET = 'Czh8cNWxD7QNgbUGWALZI50LTvTSHI147SpBDA0DjNvaifoZEM'
-ACCESS_TOKEN = '1067969736905015296-IEMh64UYEahOgxewnhb4VVkVy0JMZP'
-ACCESS_SECRET = 'AfLAHDJeAvUqtg1tSZLRUQz5hDAd8neQFCGWJpl1wGGAY'
+APP_KEY = 'YMtXI4VH9pM3cPN2vdMhdWxRa'
+APP_SECRET = 'ApX2698thmSOajZDAFBjTk8oxAxPumOkq6dAoqVd2FbiNkbzNS'
+ACCESS_TOKEN = '1070925337977065472-Vturjp8FFWGaqmIZnKHPmd2mGNLlVi'
+ACCESS_SECRET = 'bSoEc5bIVWexhRrRR88YCcruuN1pTHOONSEtkKJyAxk10'
 
 def create_square(border, draw, randColor, element, size, origImage):
     global gifMaking
@@ -75,12 +75,13 @@ def main(imgSize):
 
             create_invader((topLeftX, topLeftY, botRightX, botRightY), draw, size, origImage)
     print("Examples/Example-"+str(size)+"x"+str(size)+"-"+str(invaders)+"-"+str(imgSize)+".jpg")
-    origImage.save("Examples/Example-"+str(size)+"x"+str(size)+"-"+str(invaders)+"-"+str(imgSize)+".jpg")
+    
+    origImage.save("/home/pi/Generative/Space-Invaders/Output/final.png")
 
     twitter = Twython(APP_KEY, APP_SECRET, ACCESS_TOKEN, ACCESS_SECRET)
-    photo = open('/home/pi/Generative/SolarSystemGenerator/Twitter/textured.png', 'rb')
+    photo = open('/home/pi/Generative/Space-Invaders/Output/final.png', 'rb')
     response = twitter.upload_media(media=photo)
-    twitter.update_status(status='Randomly generated Solar System', media_ids=[response['media_id']])
+    twitter.update_status(status=str(size)+"x"+str(size)+"-"+str(invaders)+"-"+str(imgSize), media_ids=[response['media_id']])
 
 
 
