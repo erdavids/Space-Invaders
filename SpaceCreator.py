@@ -57,8 +57,8 @@ def create_invader(border, draw, size, origImage):
 
 
 def main(imgSize):
-    size = rng.randrange(3, 25+1, 2)
-    invaders = rng.randint(6, 45)
+    size = rng.randrange(3, 45+1, 2)
+    invaders = rng.randint(3, 50)
     origDimension = imgSize
     origImage = Image.new('RGB', (origDimension, origDimension))
     draw = ImageDraw.Draw(origImage)
@@ -66,17 +66,22 @@ def main(imgSize):
     invaderSize = origDimension/invaders
     padding = invaderSize/size
     # Will eventually create many
+    finalBotRightX = 0
+    finalBotRightY = 0
     for x in range(0, invaders):
         for y in range(0, invaders):
-            topLeftX = x*invaderSize + padding/2
-            topLeftY = y*invaderSize + padding/2
-            botRightX = topLeftX + invaderSize - padding/2
-            botRightY = topLeftY + invaderSize - padding/2
+            topLeftX = x*invaderSize + padding
+            topLeftY = y*invaderSize + padding
+            botRightX = topLeftX + invaderSize - padding*2
+            botRightY = topLeftY + invaderSize - padding*2
+            
+            finalBotRightX = botRightX
+            finalBotRightY = botRightY
+            create_invader((topLeftX, topLeftY, botRightX, botRightY), draw, size)
 
-            create_invader((topLeftX, topLeftY, botRightX, botRightY), draw, size, origImage)
-    print("Examples/Example-"+str(size)+"x"+str(size)+"-"+str(invaders)+"-"+str(imgSize)+".jpg")
-    
-    origImage.save("/home/pi/Generative/Space-Invaders/Output/final.png")
+
+#    origImage.save("Examples/Example-"+str(size)+"x"+str(size)+"-"+str(invaders)+"-"+str(imgSize)+".jpg")
+    origImage.crop((0, 0, botRightX-padding, botRightY-padding)).save("/home/pi/Generative/Space-Invaders/Output/final.png")
 
     twitter = Twython(APP_KEY, APP_SECRET, ACCESS_TOKEN, ACCESS_SECRET)
     photo = open('/home/pi/Generative/Space-Invaders/Output/final.png', 'rb')
