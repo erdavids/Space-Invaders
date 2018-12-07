@@ -45,18 +45,26 @@ def main(size, invaders, imgSize):
     draw = ImageDraw.Draw(origImage)
 
     invaderSize = origDimension/invaders
+    print(invaderSize)
     padding = invaderSize/size
+    print(padding)
     # Will eventually create many
+    finalBotRightX = 0
+    finalBotRightY = 0
     for x in range(0, invaders):
         for y in range(0, invaders):
             topLeftX = x*invaderSize + padding
             topLeftY = y*invaderSize + padding
-            botRightX = topLeftX + invaderSize - padding
-            botRightY = topLeftY + invaderSize - padding
-
+            botRightX = topLeftX + invaderSize - padding*2
+            botRightY = topLeftY + invaderSize - padding*2
+            
+            finalBotRightX = botRightX
+            finalBotRightY = botRightY
             create_invader((topLeftX, topLeftY, botRightX, botRightY), draw, size)
 
-    origImage.save("Examples/Example-"+str(size)+"x"+str(size)+"-"+str(invaders)+"-"+str(imgSize)+".jpg")
+
+#    origImage.save("Examples/Example-"+str(size)+"x"+str(size)+"-"+str(invaders)+"-"+str(imgSize)+".jpg")
+    origImage.crop((0, 0, botRightX-padding, botRightY-padding)).save("Examples/paddingTest.jpg")
 
 if __name__ == "__main__":
     main(int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3]))
