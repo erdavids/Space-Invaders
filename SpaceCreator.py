@@ -1,5 +1,6 @@
 import PIL, random, sys
 from PIL import Image, ImageDraw
+from twython import Twython
 
 origDimension = 1500
 
@@ -77,7 +78,7 @@ def main(imgSize):
             
             finalBotRightX = botRightX
             finalBotRightY = botRightY
-            create_invader((topLeftX, topLeftY, botRightX, botRightY), draw, size)
+            create_invader((topLeftX, topLeftY, botRightX, botRightY), draw, size, origImage)
 
 
 #    origImage.save("Examples/Example-"+str(size)+"x"+str(size)+"-"+str(invaders)+"-"+str(imgSize)+".jpg")
