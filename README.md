@@ -1,10 +1,10 @@
 # Space Invaders
 
-This is a simple Python program that creates Space Invader styled sprites in any size.
-    
-For information on how to create your own generator, refer to [this article](https://medium.freecodecamp.org/how-to-create-generative-art-in-less-than-100-lines-of-code-d37f379859f).
+One of my first generative art projects that generates random space invaders.
 
-Examples:
+Check out [this twitter bot](https://twitter.com/generatorsprite) running on a Raspberry Pi that posts every 20 minutes.
+    
+For my thoughts on getting started with generative art, check out [this article](https://medium.com/free-code-camp/how-to-create-generative-art-in-less-than-100-lines-of-code-d37f379859f).
 
 ![Example 1](https://raw.githubusercontent.com/erdavids/Space-Invaders/master/Examples/Example-15x15-15-1500.jpg)
 
