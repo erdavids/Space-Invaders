@@ -26,6 +26,7 @@ def create_invader(border, draw, size):
     for y in range(0, size):
         incrementer *= -1
         element = 0
+        flag = 1 - size % 2  # flag in case of even number
         for x in range(0, size):
             topLeftX = x*squareSize + x0
             topLeftY = y*squareSize + y0
@@ -34,8 +35,14 @@ def create_invader(border, draw, size):
 
 
             create_square((topLeftX, topLeftY, botRightX, botRightY), draw, random.choice(randColors), element, size)
-            if (element == int(size/2) or element == 0):
-                incrementer *= -1;
+            if element == 0 or (not flag and element == int(size / 2)):
+                incrementer *= -1
+            # if even size of invader, element of int(size / 2 - 1) must be
+            # repeated twice and only then it can start to decrement
+            if flag and element == int(size / 2 - 1):
+                element += 1
+                incrementer *= -1
+                flag = 0
             element += incrementer
 
 
@@ -63,8 +70,8 @@ def main(size, invaders, imgSize):
             create_invader((topLeftX, topLeftY, botRightX, botRightY), draw, size)
 
 
-#    origImage.save("Examples/Example-"+str(size)+"x"+str(size)+"-"+str(invaders)+"-"+str(imgSize)+".jpg")
-    origImage.crop((0, 0, botRightX-padding, botRightY-padding)).save("Examples/paddingTest.jpg")
+    origImage.save("Examples/Example-"+str(size)+"x"+str(size)+"-"+str(invaders)+"-"+str(imgSize)+".jpg")
+    # origImage.crop((0, 0, botRightX-padding, botRightY-padding)).save("Examples/paddingTest.jpg")
 
 if __name__ == "__main__":
     main(int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3]))
